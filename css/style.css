@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'pixelifysans';
-    src: url('font/pixelifysans-regular.ttf') format('truetype');
+    src: url('../font/pixelifysans-regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -43,4 +43,24 @@ h1 {
 #pcopyright{
     font-family: 'pixelifysans', sans-serif;
     text-align: end;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: none;
+  display: flex;
+  justify-content: center;
+}
+
+ul li a {
+  display: block;
+  color: white;
+  padding: 14px 30px;
+  text-decoration: none;
+}
+
+ul li a:hover {
+  background-color: #111111;
 }

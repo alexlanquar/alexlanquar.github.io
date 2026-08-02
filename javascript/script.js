@@ -23,10 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (music.paused) {
                 music.play();
-                muteIcon.src = "images/unmute.png"; // Image de lecture
+                muteIcon.src = "../images/unmute.png"; // Image de lecture
             } else {
                 music.pause();
-                muteIcon.src = "images/mute.png";   // Image de pause
+                muteIcon.src = "../images/mute.png";   // Image de pause
             }
         });
     }
