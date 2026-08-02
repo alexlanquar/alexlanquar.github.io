@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'PixelifySans';
-    src: url('font/PixelifySans-Regular.ttf') format('truetype');
+    font-family: 'pixelifysans';
+    src: url('font/pixelifysans-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -15,7 +15,7 @@ body {
 
 h1 {
     color: white;
-    font-family: 'PixelifySans', sans-serif;
+    font-family: 'pixelifysans', sans-serif;
     text-align: center;
 }
 
@@ -41,6 +41,6 @@ h1 {
 }
 
 #pcopyright{
-    font-family: 'PixelifySans', sans-serif;
+    font-family: 'pixelifysans', sans-serif;
     text-align: end;
 }
