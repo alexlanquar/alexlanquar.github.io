@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Alexandre Lanquar</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>Alexandre Lanquar</h1>
+    <nav class="navbar">
+        <button id="btn-home" class="nav-link active">Accueil</button>
+        <button id="btn-voyage" class="nav-link">Voyages</button>
+        <button id="btn-doc" class="nav-link">Resume</button>
+    </nav>
+
+    <!-- SECTION ACCUEIL -->
+    <section id="section-home" class="page-section">
+        <!-- Ajoutez ici le reste de votre contenu d'accueil -->
+    </section>
+
+    <!-- SECTION VOYAGE -->
+    <section id="section-voyage" class="page-section hidden">
+        <div class="resume-container">
+            <h2>Voyage</h2>
+            <p>Voici quelques photos de mes voyages :</p>
+            <div class="travel-photos">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION RESUME -->
+    <section id="section-doc" class="page-section hidden">
+        <div class="resume-container">
+            <!-- Le texte indicatif au-dessus -->
+            <h2>Resume Preview</h2>
+            <p class="instruction">Click image for a PDF.</p>
+
+            <!-- L'image cliquable qui ouvre le PDF -->
+            <a href="./documents/ResumeFRAlexandreLanquar.pdf" target="_blank" class="pdf-link">
+                <img src="images/Alexandre Lanquar CV Canada v2_page-0001.jpg" alt="Aperçu du CV" class="pdf-preview">
+                <img src="images/Alexandre Lanquar CV Canada v2_page-0002.jpg" alt="Aperçu du CV" class="pdf-preview">
+            </a>
+        </div>
+    </section>
+
+    <!-- Audio masqué -->
+    <div class="audio-container" style="display: none;">
+        <audio id="bg-music" loop>
+            <source src="./audio/lofi-videogame.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- Bouton de contrôle audio -->
+    <button id="mute-btn" class="audio-button" title="Couper / Activer le son">
+        <img src="./images/unmute.png" id="mute-icon" alt="Volume">
+    </button>
+
+    <footer id="contact-section">
+        <p id="pcopyright">Music : gingersweet - massobeats</p>
+    </footer>
+    <script src="./script.js"></script>
+</body>
+</html>
