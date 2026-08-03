@@ -73,7 +73,7 @@ nav{
     color: #ff4d4d;
 }
 
-#section-doc{
+#section-resume{
     display: flex;
     justify-content: center; /* Centre horizontalement */
     align-items: center;     /* Centre verticalement au milieu de la page */
@@ -100,7 +100,6 @@ iframe {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-
 .resume-container {
   padding: 40px;
   font-family: Arial, sans-serif;
@@ -125,4 +124,13 @@ iframe {
 
 .pdf-preview:hover {
   transform: scale(1.01);
+}
+
+#logo {
+    display: block;
+    left: 0;
+    right: 500px;
+    width: 5%; /* Ajuste la taille du logo selon tes besoins */
+    height: auto;
+    position: left;
 }

@@ -7,22 +7,43 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1>Alexandre Lanquar</h1>
-    <nav class="navbar">
-        <button id="btn-home" class="nav-link active">Accueil</button>
-        <button id="btn-voyage" class="nav-link">Voyages</button>
-        <button id="btn-doc" class="nav-link">Resume</button>
-    </nav>
+    <div style="display: flex; align-items: center; justify-content: center; flex-direction: line;">
+        <img src="./images/Face2.png" alt="Logo Alexandre Lanquar" id="logo" position="absolute" style="top: 10px; left: 10px; width: 100px; height: auto;">
+        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+            <h1>Alexandre Lanquar</h1>
+            <nav class="navbar">
+                <button id="btn-home" class="nav-link active">Accueil</button>
+                <button id="btn-travel" class="nav-link">Voyages</button>
+                <button id="btn-projects" class="nav-link">Projets</button>
+                <button id="btn-resume" class="nav-link">Contact & CV</button>
+            </nav>
+        </div>
+        
+    </div>
+        
+    
+    
 
     <!-- SECTION ACCUEIL -->
     <section id="section-home" class="page-section">
         <!-- Ajoutez ici le reste de votre contenu d'accueil -->
     </section>
 
+    <section id="section-projects" class="page-section hidden">
+        <div class="projects-container">
+            <h2>Projets</h2>
+            <p>Voici quelques-uns de mes projets :</p>
+            <div class="projects-list">
+                <!-- Ajoutez ici vos projets -->
+            </div>
+        </div>
+
+    </section>
+
     <!-- SECTION VOYAGE -->
-    <section id="section-voyage" class="page-section hidden">
-        <div class="resume-container">
-            <h2>Voyage</h2>
+    <section id="section-travel" class="page-section hidden">
+        <div class="travel-container">
+            <h2>Voyages</h2>
             <p>Voici quelques photos de mes voyages :</p>
             <div class="travel-photos">
             </div>
@@ -30,11 +51,11 @@
     </section>
 
     <!-- SECTION RESUME -->
-    <section id="section-doc" class="page-section hidden">
+    <section id="section-resume" class="page-section hidden">
         <div class="resume-container">
             <!-- Le texte indicatif au-dessus -->
-            <h2>Resume Preview</h2>
-            <p class="instruction">Click image for a PDF.</p>
+            <h2>Visualisation Curriculum Vitae</h2>
+            <p class="instruction">Cliquez sur l'image pour voir le PDF.</p>
 
             <!-- L'image cliquable qui ouvre le PDF -->
             <a href="./documents/ResumeFRAlexandreLanquar.pdf" target="_blank" class="pdf-link">

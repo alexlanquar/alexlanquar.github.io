@@ -2,12 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const music = document.getElementById('bg-music');
     const muteBtn = document.getElementById('mute-btn');
     const muteIcon = document.getElementById('mute-icon');
+
     const btnHome = document.getElementById('btn-home');
-    const btnDoc = document.getElementById('btn-doc');
-    const btnVoy = document.getElementById('btn-voyage');
+    const btnResume = document.getElementById('btn-resume');
+    const btnTravel = document.getElementById('btn-travel');
+    const btnProjects = document.getElementById('btn-projects');
+
     const sectionHome = document.getElementById('section-home');
-    const sectionDoc = document.getElementById('section-doc');
-    const sectionVoy = document.getElementById('section-voyage');
+    const sectionResume = document.getElementById('section-resume');
+    const sectionTravel = document.getElementById('section-travel');
+    const sectionProjects = document.getElementById('section-projects');
 
     let hasStarted = false;
 
@@ -38,38 +42,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    if (btnHome && btnDoc && sectionHome && sectionDoc) {
+    if (btnHome && btnTravel && btnResume && btnProjects && sectionHome && sectionTravel && sectionResume  && sectionProjects) {
         btnHome.addEventListener('click', () => {
             // Activer le bouton Accueil
             btnHome.classList.add('active');
-            btnDoc.classList.remove('active');
-            btnVoy.classList.remove('active');
+            btnResume.classList.remove('active');
+            btnTravel.classList.remove('active');
+            btnProjects.classList.remove('active');
             // Afficher l'accueil, masquer le PDF
             sectionHome.classList.remove('hidden');
-            sectionDoc.classList.add('hidden');
-            sectionVoy.classList.add('hidden');
+            sectionResume.classList.add('hidden');
+            sectionTravel.classList.add('hidden');
+            sectionProjects.classList.add('hidden');
         });
 
-        btnDoc.addEventListener('click', () => {
+        btnResume.addEventListener('click', () => {
             // Activer le bouton Document
-            btnDoc.classList.add('active');
+            btnResume.classList.add('active');
             btnHome.classList.remove('active');
-            btnVoy.classList.remove('active');
+            btnTravel.classList.remove('active');
+            btnProjects.classList.remove('active');
             // Afficher le PDF, masquer l'accueil
-            sectionDoc.classList.remove('hidden');
+            sectionResume.classList.remove('hidden');
             sectionHome.classList.add('hidden');
-            sectionVoy.classList.add('hidden');
+            sectionTravel.classList.add('hidden');
+            sectionProjects.classList.add('hidden');
         });
 
-        btnVoy.addEventListener('click', () => {
+        btnTravel.addEventListener('click', () => {
             // Activer le bouton Document
-            btnDoc.classList.remove('active');
+            btnResume.classList.remove('active');
             btnHome.classList.remove('active');
-            btnVoy.classList.add('active');
+            btnTravel.classList.add('active');
+            btnProjects.classList.remove('active');
             // Afficher le PDF, masquer l'accueil
-            sectionVoy.classList.remove('hidden');
+            sectionTravel.classList.remove('hidden');
             sectionHome.classList.add('hidden');
-            sectionDoc.classList.add('hidden');
+            sectionResume.classList.add('hidden');
+            sectionProjects.classList.add('hidden');
+        });
+
+        btnProjects.addEventListener('click', () => {
+            // Activer le bouton Document
+            btnResume.classList.remove('active');
+            btnHome.classList.remove('active');
+            btnTravel.classList.remove('active');
+            btnProjects.classList.add('active');
+            // Afficher le PDF, masquer l'accueil
+            sectionProjects.classList.remove('hidden');
+            sectionHome.classList.add('hidden');
+            sectionResume.classList.add('hidden');
+            sectionTravel.classList.add('hidden');
         });
     }
 
