@@ -13,10 +13,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const sectionTravel = document.getElementById('section-travel');
     const sectionProjects = document.getElementById('section-projects');
 
+    // gestion du joueur
+    const character = document.getElementById('character');
+    let positionX = 0;
+    let positionY = 0;
+    const speed = 8;
+    const keys = {};
+
+    // Key down / up
+    window.addEventListener('keydown', (e) => {
+        keys[e.key.toLowerCase()] = true;
+    });
+    window.addEventListener('keyup', (e) => {
+        keys[e.key.toLowerCase()] = false;
+    });
+
     let hasStarted = false;
 
-    // 1. Lance la musique au premier clic sur la page (sécurité navigateur)
-    document.addEventListener('click', () => {
+    // Boucle d'animation pour le mouvement du personnage
+    function updateMovement() {
+        // Déplacement vers le haut (Flèche Haut ou Z)
+        if (keys['arrowup'] || keys['z']) {
+            positionY -= speed;
+        }
+        // Déplacement vers le bas (Flèche Bas ou S)
+        if (keys['arrowdown'] || keys['s']) {
+            positionY += speed;
+        }
+        // Déplacement vers la gauche (Flèche Gauche ou Q)
+        if (keys['arrowleft'] || keys['q']) {
+            positionX -= speed;
+            if (character) character.style.transform = 'scaleX(-1)'; // Retourne le sprite vers la gauche
+        }
+        // Déplacement vers la droite (Flèche Droite ou D)
+        if (keys['arrowright'] || keys['d']) {
+            positionX += speed;
+            if (character) character.style.transform = 'scaleX(1)'; // Remet le sprite vers la droite
+        }
+
+        // Limites de l'écran (Optionnel : empêche de sortir de la page)
+        if (character) {
+            positionX = Math.max(0, Math.min(positionX, window.innerWidth - character.clientWidth));
+            positionY = Math.max(0, Math.min(positionY, document.documentElement.scrollHeight - character.clientHeight));
+
+            // Application des nouvelles coordonnées
+            character.style.left = positionX + 'px';
+            character.style.top = positionY + 'px';
+        }
+        // Relancer la boucle au prochain rafraîchissement d'écran
+        requestAnimationFrame(updateMovement);
+    }
+
+    requestAnimationFrame(updateMovement);
+
+    document.addEventListener("click", () => {
         if (!hasStarted && music) {
             music.play()
                 .then(() => {
@@ -26,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, { once: true });
 
-    // 2. Gestion du bouton Play / Pause
     if (muteBtn && music && muteIcon) {
         muteBtn.addEventListener('click', (e) => {
             e.stopPropagation(); // Empêche le conflit avec le clic global

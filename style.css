@@ -130,7 +130,5 @@ iframe {
     display: block;
     left: 0;
     right: 500px;
-    width: 5%; /* Ajuste la taille du logo selon tes besoins */
     height: auto;
-    position: left;
 }
