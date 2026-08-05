@@ -5,34 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Alexandre Lanquar</title>
     <link rel="stylesheet" href="./style.css">
+    <!-- prechargement pour l'image de marche -->
+    <link rel="preload" href="./images/right_walk.gif" as="image">
 </head>
 <body>
-    <!-- menu + titre -->
-    <div style="display: flex; align-items: center; justify-content: center; flex-direction: line;">
-        <img src="./images/base.png" id="character" alt="Personnage" style="position: absolute; left: 50px; top: 200px; width: 50px; height: auto; z-index: 1000; transition: transform 0.1s;">
-        <div style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
-            <h1>Alexandre Lanquar</h1>
-            <nav class="navbar">
-                <button id="btn-home" class="nav-link active">Accueil</button>
-                <button id="btn-travel" class="nav-link">Voyages</button>
-                <button id="btn-projects" class="nav-link">Projets</button>
-                <button id="btn-resume" class="nav-link">Contact & CV</button>
-            </nav>
-        </div>
+    <!-- <img src="./images/base.png" id="character" alt="Personnage" style="position: absolute; left: 50px; top: 200px; width: 40px; height: auto; z-index: 1000; transition: transform 0.1s;"> -->
+    <div id="character-wrapper" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1000; display: flex; flex-direction: column; align-items: center; pointer-events: none;">
+        <span id="action-text" style="background: rgba(0, 0, 0, 0.75); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-family: sans-serif; white-space: nowrap; opacity: 0; visibility: hidden; position: absolute; bottom: 100%; transform: translateY(-6px); transition: opacity 0.15s, visibility 0.15s;">
+            Appuyez sur Entrée ↵
+        </span>
+        <img src="./images/base.png" id="character" alt="Personnage" style="width: 40px; height: auto; transition: transform 0.1s;">
     </div>
+
+    <div id="game-world" style="position: relative; width: 100%; min-height: 80vh; background-image: url('./images/votre_fond.jpg'); background-size: cover; background-position: center;">
+        <button id="btn-home" class="nav-link active" style="position: absolute; left: 15%; top: 20%;">Accueil</button>
+        <button id="btn-travel" class="nav-link" style="position: absolute; left: 80%; top: 30%;">Voyages</button>
+        <!-- Boutons placés en coordonnées absolues par rapport au fond -->
+         <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%);">
+                <h1>Bienvenue sur le site de</h1>
+                <h1>Alexandre Lanquar</h1>
+        </div>
+        <button id="btn-projects" class="nav-link" style="position: absolute; left: 25%; top: 65%;">Projets</button>
+        <button id="btn-resume" class="nav-link" style="position: absolute; left: 70%; top: 70%;">Contact & CV</button>
+
+    </div>
+
     <!-- home -->
     <section id="section-home" class="page-section">
     </section>
-    <!-- projets -->
-    <section id="section-projects" class="page-section hidden">
-        <div class="projects-container">
-            <h2>Projets</h2>
-            <p>Voici quelques-uns de mes projets :</p>
-            <div class="projects-list">
-            </div>
-        </div>
-
-    </section>
+    
     <!-- voyages -->
     <section id="section-travel" class="page-section hidden">
         <div class="travel-container">
@@ -42,6 +43,7 @@
             </div>
         </div>
     </section>
+
     <!-- resume -->
     <section id="section-resume" class="page-section hidden">
         <div class="resume-container">
@@ -59,10 +61,12 @@
             <source src="./audio/lofi-videogame.mp3" type="audio/mpeg">
         </audio>
     </div>
+
     <!-- mute btn -->
     <button id="mute-btn" class="audio-button" title="Couper / Activer le son">
         <img src="./images/unmute.png" id="mute-icon" alt="Volume">
     </button>
+
     <!-- footer -->
     <footer id="contact-section">
         <p id="pcopyright">Music : gingersweet - massobeats</p>
