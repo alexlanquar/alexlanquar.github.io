@@ -9,16 +9,16 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url('./images/village_backgroundhome.png');
+    background-image: url('./images/windows_background.jpg');
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
+    background-size: contain;
+    background-attachment: fixed; /* Fixe l'image de fond pour qu'elle ne bouge pas lors du défilement */
     color: white;
     max-width: 100%;
-    overflow-x: hidden; /* Empêche le défilement horizontal */
-    overflow-y: hidden;   /* Permet le défilement vertical si nécessaire */
     padding: 0;
     min-height: 100vh;
+    background-color: #000000;
     box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
 }
 
@@ -27,7 +27,6 @@ h1 {
     font-family: 'pixelifysans', sans-serif;
     text-align: center;
 }
-
 
 #mute-btn {
     position: fixed;     
@@ -93,12 +92,18 @@ nav{
     transition: background-color 0.2s, transform 0.2s;
 }
 
-title {
-    font-family: 'PixelifySans', sans-serif;
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: black;
+#section-resume{
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;     /* Centre verticalement au milieu de la page */
+    min-height: 100vh;       /* Prend toute la hauteur de l'écran */
+    width: 100%;
+    color: #ffffff !important; /* Force le texte en blanc */
+    text-align: center;      /* Centre le texte */
+    box-sizing: border-box;
+    padding: 40px 20px;
 }
+
 
 iframe {
     width: 100%;
@@ -126,10 +131,25 @@ iframe {
 }
 
 .resume-container .pdf-link {
-  display: inline-block;
-  text-decoration: none;
-  color: inherit;
-  width: max-content;
+    position: fixed;       /* Bloque le conteneur par rapport à l'écran visible */
+    top: 120px;            /* Distance par rapport au haut de l'écran (laisse la place à votre bouton Accueil) */
+    bottom: 30px;          /* Arrête le conteneur à exactement 30px au-dessus du bas de l'écran */
+    
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;            /* Largeur du conteneur (ajustez le pourcentage selon vos goûts) */
+    max-width: 1200px;     /* Sécurité pour les grands écrans */
+
+    /* MAGIE DU SCROLL INTERNE */
+    overflow-y: auto;      /* Active le scroll UNIQUEMENT à l'intérieur de ce div si le contenu dépasse */
+    overflow-x: hidden;    /* Coupe tout défilement horizontal indésirable */
+    
+    padding: 20px;
+    box-sizing: border-box;
+    scrollbar-width: none;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('./images/wordxp.png'); /* Fond semi-transparent pour détacher le CV du fond */
 }
 
 .pdf-preview {
@@ -152,4 +172,21 @@ iframe {
     left: 0;
     right: 500px;
     height: auto;
+}
+
+.pdf-link {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    width: max-content;
+}
+
+#btn-desk {
+    position: absolute;
+    left: 85%;
+    top: 7px;
+    z-index: 1500;
+    background: none;
+    border: none;
+    cursor: pointer;
 }

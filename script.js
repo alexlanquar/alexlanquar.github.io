@@ -4,9 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const muteIcon = document.getElementById('mute-icon');
 
     const btnHome = document.getElementById('btn-home');
-    const btnResume = document.getElementById('btn-resume');
+    const btnDesk = document.getElementById('btn-desk');
     const btnTravel = document.getElementById('btn-travel');
     const btnProjects = document.getElementById('btn-projects');
+    const btnCV = document.getElementById('btn-cv');
 
     const sectionHome = document.getElementById('index.html');
     const sectionResume = document.getElementById('resume.html');
@@ -34,13 +35,14 @@ document.addEventListener('DOMContentLoaded', () => {
         { buttonId: 'btn-home', url: './index.html' },
         { buttonId: 'btn-travel', url: './travel.html' },
         { buttonId: 'btn-projects', url: './projects.html' },
-        { buttonId: 'btn-resume', url: './resume.html' }
+        { buttonId: 'btn-desk', url: './desk.html' },
+        { buttonId: 'btn-cv', url: './resume.html' }
     ];
 
     // Écouteurs clavier
     window.addEventListener('keydown', (e) => {
         const key = e.key.toLowerCase();
-        if (key === 'enter') {
+        if (key === 'enter' || key === 'e') {
             e.preventDefault(); 
             interactWithSection();
         }
@@ -203,57 +205,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 },200);
             }
         }
-    }
-
-    // Affichage et masquage des sections de pages
-    if (btnHome && btnTravel && btnResume && btnProjects && sectionHome && sectionTravel && sectionResume && sectionProjects) {
-        
-        btnHome.addEventListener('click', () => {
-            btnHome.classList.add('active');
-            btnResume.classList.remove('active');
-            btnTravel.classList.remove('active');
-            btnProjects.classList.remove('active');
-
-            sectionHome.classList.remove('hidden');
-            sectionResume.classList.add('hidden');
-            sectionTravel.classList.add('hidden');
-            sectionProjects.classList.add('hidden');
-        });
-
-        btnResume.addEventListener('click', () => {
-            btnResume.classList.add('active');
-            btnHome.classList.remove('active');
-            btnTravel.classList.remove('active');
-            btnProjects.classList.remove('active');
-
-            sectionResume.classList.remove('hidden');
-            sectionHome.classList.add('hidden');
-            sectionTravel.classList.add('hidden');
-            sectionProjects.classList.add('hidden');
-        });
-
-        btnTravel.addEventListener('click', () => {
-            btnTravel.classList.add('active');
-            btnHome.classList.remove('active');
-            btnResume.classList.remove('active');
-            btnProjects.classList.remove('active');
-
-            sectionTravel.classList.remove('hidden');
-            sectionHome.classList.add('hidden');
-            sectionResume.classList.add('hidden');
-            sectionProjects.classList.add('hidden');
-        });
-
-        btnProjects.addEventListener('click', () => {
-            btnProjects.classList.add('active');
-            btnHome.classList.remove('active');
-            btnResume.classList.remove('active');
-            btnTravel.classList.remove('active');
-
-            sectionProjects.classList.remove('hidden');
-            sectionHome.classList.add('hidden');
-            sectionResume.classList.add('hidden');
-            sectionTravel.classList.add('hidden');
-        });
     }
 });

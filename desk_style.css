@@ -9,16 +9,16 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url('./images/village_backgroundhome.png');
+    background-image: url('./images/desk_background.png');
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
+    background-size: contain;
+    background-attachment: fixed; /* Fixe l'image de fond pour qu'elle ne bouge pas lors du défilement */
     color: white;
     max-width: 100%;
-    overflow-x: hidden; /* Empêche le défilement horizontal */
-    overflow-y: hidden;   /* Permet le défilement vertical si nécessaire */
     padding: 0;
     min-height: 100vh;
+    background-color: #000000;
     box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
 }
 
@@ -91,6 +91,18 @@ nav{
     cursor: pointer;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Ombre portée sous le carré */
     transition: background-color 0.2s, transform 0.2s;
+}
+
+#section-resume{
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;     /* Centre verticalement au milieu de la page */
+    min-height: 100vh;       /* Prend toute la hauteur de l'écran */
+    width: 100%;
+    color: #ffffff !important; /* Force le texte en blanc */
+    text-align: center;      /* Centre le texte */
+    box-sizing: border-box;
+    padding: 40px 20px;
 }
 
 title {
