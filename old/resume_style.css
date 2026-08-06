@@ -22,6 +22,12 @@ body {
     box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
 }
 
+h1 {
+    color: white;
+    font-family: 'pixelifysans', sans-serif;
+    text-align: center;
+}
+
 #mute-btn {
     position: fixed;     
     bottom: 20px;        
@@ -43,8 +49,47 @@ body {
     transform: scale(1.1);
 }
 
+#pcopyright{
+    font-family: 'pixelifysans', sans-serif;
+    text-align: end;
+}
+
 .hidden {
     display: none !important;
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    background-color: #1a294d;
+    padding: 10px 0;
+}
+
+/* Transforme les boutons du menu pour qu'ils ressemblent à des liens */
+.nav-link {
+    /* 1. TAILLE FORCÉE EN CARRÉ COMPACT */
+    width: 120px;             /* Largeur du carré */
+    height: 120px;            /* Hauteur identique pour un carré parfait */
+    padding: 0;               /* On retire les espacements qui déforment le carré */
+    
+    /* 2. CENTRAGE PARFAIT DU TEXTE IN-APP */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    font-family: sans-serif;
+    
+    /* 3. COULEUR DE REMPLISSAGE VIOLETTE */
+    background-color: #8e44ad; /* Un beau violet franc */
+    color: #ffffff;           /* Texte en blanc */
+    border: 3px solid #ffffff; /* Bordure blanche pour détacher le carré du fond */
+    border-radius: 0px;       /* Force les angles bien droits (0px = carré parfait) */
+    
+    /* 4. DESIGN & INTERACTION */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Ombre portée sous le carré */
+    transition: background-color 0.2s, transform 0.2s;
 }
 
 #section-resume{
@@ -57,6 +102,15 @@ body {
     text-align: center;      /* Centre le texte */
     box-sizing: border-box;
     padding: 40px 20px;
+}
+
+
+iframe {
+    width: 100%;
+    height: 80vh; /* Ajuste la hauteur selon tes besoins */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .resume-container {
@@ -72,28 +126,30 @@ body {
 }
 
 .resume-container .pdf-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  box-sizing: border-box;
-  padding: clamp(50px, 12vh, 90px) clamp(8px, 3vw, 24px) clamp(16px, 4vh, 40px);
+  padding-top: 60px;
+  left:auto;
 }
 
 .resume-container .pdf-link {
-    /* Bloc normal dans le flux, plus de position fixed avec top/bottom en px :
-       il s'adapte à toutes les hauteurs/largeurs de fenêtre au lieu de se
-       couper ou de laisser un espace vide selon l'écran. */
-    width: min(90vw, 900px);
-    max-height: 85vh;
+    position: fixed;       /* Bloque le conteneur par rapport à l'écran visible */
+    top: 120px;            /* Distance par rapport au haut de l'écran (laisse la place à votre bouton Accueil) */
+    bottom: 30px;          /* Arrête le conteneur à exactement 30px au-dessus du bas de l'écran */
+    
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;            /* Largeur du conteneur (ajustez le pourcentage selon vos goûts) */
+    max-width: 1200px;     /* Sécurité pour les grands écrans */
 
-    overflow-y: auto;      /* Scroll interne uniquement si le CV dépasse la hauteur visible */
-    overflow-x: hidden;
-
+    /* MAGIE DU SCROLL INTERNE */
+    overflow-y: auto;      /* Active le scroll UNIQUEMENT à l'intérieur de ce div si le contenu dépasse */
+    overflow-x: hidden;    /* Coupe tout défilement horizontal indésirable */
+    
     padding: 20px;
     box-sizing: border-box;
-    scrollbar-width: thin;
+    scrollbar-width: none;
     background-size: cover;
     background-repeat: no-repeat;
+    background-image: url('./images/wordxp.png'); /* Fond semi-transparent pour détacher le CV du fond */
 }
 
 .pdf-preview {

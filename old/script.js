@@ -10,74 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const character = document.getElementById('character');
     const actionText = document.getElementById('action-text');
 
+    let positionX = window.innerWidth / 2 - 20;
+    let positionY = window.innerHeight / 2 - 20;
     const speed = 5;
     const keys = {};
-
-    // === POSITION DE DÉPART ===
-    // Sur l'accueil : au milieu de l'écran.
-    // Sur toutes les autres pages : au niveau du dessin de la sortie
-    // (le bouton "Retour à l'accueil", invisible mais toujours positionné dessus).
-    const isHomePage = document.body.dataset.page === 'home';
-
-    function getSpawnPosition() {
-        if (!isHomePage) {
-            const homeBtn = document.getElementById('btn-home');
-            if (homeBtn) {
-                const rect = homeBtn.getBoundingClientRect();
-                return {
-                    x: rect.left + rect.width / 2 - 20, // centré sur le bouton
-                    y: rect.top - 40   // spawn 40px AU-DESSUS du bouton
-                };
-            }
-        }
-        return {
-            x: window.innerWidth / 2,
-            y: window.innerHeight / 2 - 20
-        };
-    }
-
-    const spawn = getSpawnPosition();
-    let positionX = spawn.x;
-    let positionY = spawn.y;
-
-    // === OBSTACLES ===
-    // La hitbox de chaque meuble est directement sa taille/position réelle
-    // dans le HTML (tout élément avec la classe "obstacle" dans #game-world).
-    // Changer width/height/left/top du div change donc AUTOMATIQUEMENT
-    // à la fois le visuel et la collision : une seule source de vérité,
-    // plus de table de coordonnées à maintenir en double.
-    const gameWorld = document.getElementById('game-world');
-
-    function getObstacleRects() {
-        if (!gameWorld) return [];
-        return Array.from(gameWorld.querySelectorAll('.obstacle'))
-            .map(el => el.getBoundingClientRect());
-    }
-
-    function rectsOverlap(a, b) {
-        return a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
-    }
-
-    // === ZONES DE PROXIMITÉ ===
-    // Contrairement aux boutons de navigation, ces zones ne mènent nulle part :
-    // elles affichent/masquent un élément (ex : la carte de contact) quand le
-    // personnage s'en approche.
-    const proximityConfig = {
-        desk: [
-            { zoneId: 'contact-trigger', targetId: 'contact-card', radius: 300 }
-        ]
-    };
-    const proximityZones = proximityConfig[document.body.dataset.page] || [];
-
-    function updateProximityZones() {
-        proximityZones.forEach(zone => {
-            const marker = document.getElementById(zone.zoneId);
-            const target = document.getElementById(zone.targetId);
-            if (!marker || !target) return;
-            const near = distanceToButton(marker) < zone.radius;
-            target.classList.toggle('visible', near);
-        });
-    }
 
     // Textures du personnage
     const imageBase = "./images/base.png";
@@ -186,43 +122,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const isMovingRight = keys['arrowright'] || keys['d'];
         const isMoving = isMovingUp || isMovingDown || isMovingLeft || isMovingRight;
 
-        let dx = 0;
-        let dy = 0;
-        if (isMovingLeft) dx -= speed;
-        if (isMovingRight) dx += speed;
-        if (isMovingUp) dy -= speed;
-        if (isMovingDown) dy += speed;
-
-        if (isMovingLeft) character.style.transform = 'scaleX(1)';
-        if (isMovingRight) character.style.transform = 'scaleX(-1)';
-
-        // Collision avec les obstacles : on teste chaque axe séparément,
-        // ce qui permet de glisser le long d'un bureau au lieu de se bloquer
-        // net (slalom).
-        if (dx !== 0 || dy !== 0) {
-            const obstacleRects = getObstacleRects();
-            if (obstacleRects.length > 0) {
-                const charRect = wrapper.getBoundingClientRect();
-
-                if (dx !== 0) {
-                    const testRect = {
-                        left: charRect.left + dx, right: charRect.right + dx,
-                        top: charRect.top, bottom: charRect.bottom
-                    };
-                    if (obstacleRects.some(r => rectsOverlap(testRect, r))) dx = 0;
-                }
-                if (dy !== 0) {
-                    const testRect = {
-                        left: charRect.left + dx, right: charRect.right + dx,
-                        top: charRect.top + dy, bottom: charRect.bottom + dy
-                    };
-                    if (obstacleRects.some(r => rectsOverlap(testRect, r))) dy = 0;
-                }
-            }
+        if (isMovingUp) positionY -= speed;
+        if (isMovingDown) positionY += speed;
+        if (isMovingLeft) {
+            positionX -= speed;
+            character.style.transform = 'scaleX(1)';
         }
-
-        positionX += dx;
-        positionY += dy;
+        if (isMovingRight) {
+            positionX += speed;
+            character.style.transform = 'scaleX(-1)';
+        }
 
         // Texture dynamique (marche / immobile)
         if (isMoving) {
@@ -248,9 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 actionText.style.visibility = 'hidden';
             }
         }
-
-        // Affiche/masque les éléments liés aux zones de proximité (ex : carte de contact)
-        updateProximityZones();
 
         // Limites de déplacement (empêche de sortir de l'écran / de la page)
         const currentWidth = isMoving ? width_walk : width_base;

@@ -1,0 +1,157 @@
+@font-face {
+    font-family: 'pixelifysans';
+    src: url('./font/pixelifysans-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url('./images/village_backgroundhome.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    color: white;
+    max-width: 100%;
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+    overflow-y: hidden;   /* Permet le défilement vertical si nécessaire */
+    padding: 0;
+    min-height: 100vh;
+    box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
+}
+
+h1 {
+    color: white;
+    font-family: 'pixelifysans', sans-serif;
+    text-align: center;
+}
+
+
+#mute-btn {
+    position: fixed;     
+    bottom: 20px;        
+    right: 20px;         
+    background: none;    
+    border: none;        
+    cursor: pointer;     
+    padding: 0;          
+    z-index: 1000;       
+}
+
+#mute-btn img {
+    width: 30px;         
+    height: auto;        
+    transition: transform 0.2s ease; 
+}
+
+#mute-btn img:hover {
+    transform: scale(1.1);
+}
+
+#pcopyright{
+    font-family: 'pixelifysans', sans-serif;
+    text-align: end;
+}
+
+.hidden {
+    display: none !important;
+}
+
+nav{
+    display: flex;
+    justify-content: center;
+    background-color: #1a294d;
+    padding: 10px 0;
+}
+
+/* Transforme les boutons du menu pour qu'ils ressemblent à des liens */
+.nav-link {
+    /* 1. TAILLE FORCÉE EN CARRÉ COMPACT */
+    width: 120px;             /* Largeur du carré */
+    height: 120px;            /* Hauteur identique pour un carré parfait */
+    padding: 0;               /* On retire les espacements qui déforment le carré */
+    
+    /* 2. CENTRAGE PARFAIT DU TEXTE IN-APP */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 16px;
+    font-family: sans-serif;
+    
+    /* 3. COULEUR DE REMPLISSAGE VIOLETTE */
+    background-color: #8e44ad; /* Un beau violet franc */
+    color: #ffffff;           /* Texte en blanc */
+    border: 3px solid #ffffff; /* Bordure blanche pour détacher le carré du fond */
+    border-radius: 0px;       /* Force les angles bien droits (0px = carré parfait) */
+    
+    /* 4. DESIGN & INTERACTION */
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Ombre portée sous le carré */
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+title {
+    font-family: 'PixelifySans', sans-serif;
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: black;
+}
+
+iframe {
+    width: 100%;
+    height: 80vh; /* Ajuste la hauteur selon tes besoins */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.resume-container {
+    color: white;
+    font-family: 'pixelifysans', sans-serif;
+    text-align: center;
+}
+
+.resume-container .instruction {
+  font-size: 16px;
+  margin-bottom: 25px;
+  font-family: Arial, sans-serif;
+}
+
+.resume-container .pdf-container {
+  padding-top: 60px;
+  left:auto;
+}
+
+.resume-container .pdf-link {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  width: max-content;
+}
+
+
+
+.pdf-preview {
+  display: block;
+  max-width: 800px; /* Largeur maximale de l'aperçu */
+  width: 100%;
+  height: auto;
+  margin: 10px auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Ombre portée sous le CV */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.pdf-preview:hover {
+  transform: scale(1.01);
+}
+
+#logo {
+    display: block;
+    left: 0;
+    right: 500px;
+    height: auto;
+}

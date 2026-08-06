@@ -4,23 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Alexandre Lanquar</title>
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./desk_style.css">
         <!-- prechargement pour l'image de marche -->
     <link rel="preload" href="./images/right_walk.gif" as="image">
 </head>
 
-<body>  
-    <div id="character-wrapper" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1000; display: flex; flex-direction: column; align-items: center; pointer-events: none;">
-        <span id="action-text" style="background: rgba(0, 0, 0, 0.75); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-family: sans-serif; white-space: nowrap; opacity: 0; visibility: hidden; position: absolute; bottom: 100%; transform: translateY(-6px); transition: opacity 0.15s, visibility 0.15s;">
+<body data-page="desk">
+    <div id="character-wrapper" style="position: absolute; left: 50%; top: 50%; z-index: 1000; display: flex; flex-direction: column; align-items: center; pointer-events: none;">
+        <span id="action-text" style="background: rgba(0, 0, 0, 0.75); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-family: sans-serif; white-space: nowrap; opacity: 0; visibility: hidden; position: absolute; bottom: 100%; ; transition: opacity 0.15s, visibility 0.15s;">
             Appuyez sur Entrée ↵
         </span>
         <img src="./images/base.png" id="character" alt="Personnage" style="width: 40px; height: auto; transition: transform 0.1s;">
     </div>
 
-    <div id="game-world" style="position: relative; width: 100%; min-height: 80vh; background-image: url('./images/votre_fond.jpg'); background-size: cover; background-position: center;">
-        <button id="btn-home" class="nav-link active" style="position: absolute; left: 15%; top: 20%;">Accueil</button>
-        <button id="btn-cv" class="nav-link active" style="position: absolute; left: 85%; top: 40%;">CV</button>
+    <div id="game-world" style="position: relative; width: 100%; min-height: 80vh;">
+        <div class="room-scene">
+            <div class="room-floor"></div>
+            <div class="room-wall"></div>
+            <div class="room-title">📇 Bureau & Contact</div>
+
+            <!-- Bureau simple (décor + obstacle, aucune interaction) -->
+            <div class="prop obstacle" style="left: 40%; top: 50%; width: 10%; height: 15%;">🗄️</div>
+
+            <!-- Bureau "CV" (obstacle). Le point d'interaction (btn-cv) est
+                 juste devant, hors de la zone solide, pour rester atteignable. -->
+            <div class="prop prop--accent obstacle" style="left: 72%; top: 34%; width: 18%; height: 24%;">🖥️
+                <span class="prop-label">Voir le CV</span>
+            </div>
+
+            <!-- Bureau contact (obstacle). Idem : contact-trigger est
+                 juste devant, pas dessus. -->
+            <div class="prop obstacle" style="left: 12%; top: 46%; width: 18%; height: 20%;">📇
+                <span class="prop-label">Contact</span>
+            </div>
+
+            <!-- Porte de sortie (pas un obstacle : c'est le passage) -->
+            <div class="exit-door" style="left: 44%; top: 84%; width: 12%; height: 14%;"></div>
+
+            <!-- Murs externes -->
+            <div class="wall obstacle" style="left: 0; top: 0; width: 100%; height: 0.5%;"></div>   <!-- mur haut -->
+            <div class="wall obstacle" style="left: 0; top: 99%; width: 100%; height: 0.5%;"></div> <!-- mur bas -->
+            <div class="wall obstacle" style="left: 0; top: 0; width: 0.5%; height: 100%;"></div>   <!-- mur gauche -->
+            <div class="wall obstacle" style="left: 99.5%; top: 0; width: 0.5%; height: 100%;"></div> <!-- mur droite -->
+
+            <!-- Murs internes -->
+            <div class="wall obstacle" style="left: 40%; top: 20%; width: 3%; height: 60%;"></div>
+
+        </div>
+
+
+        <!-- Points interactifs : toujours juste devant (au bord bas) du
+             meuble concerné, jamais à l'intérieur de sa zone .obstacle. -->
+        <button id="btn-home" class="nav-link exit-link" style="left: 50%; top: 88%; z-index: 5;">Retour à l'accueil</button>
+        <button id="btn-cv" class="nav-link" style="left: 79%; top: 60%; width: 90px; height: 70px; z-index: 5;">Voir le CV</button>
+
+        <!-- Juste devant le bureau contact (12-30% x, bord bas 66% y) -->
+        <div id="contact-trigger" class="proximity-zone" style="left: 19%; top: 68%; width: 90px; height: 70px;"></div>
     </div>
+
+    <!-- Carte de contact -->
+    <section class="contact-card">
+        <h2>Me contacter</h2>
+        <ul class="contact-list">
+            <li>
+                <span class="contact-icon" aria-hidden="true">✉️</span>
+                <a href="mailto:votre.email@example.com">votre.email@example.com</a>
+            </li>
+            <li>
+                <span class="contact-icon" aria-hidden="true">💼</span>
+                <a href="https://www.linkedin.com/in/votre-profil" target="_blank" rel="noopener">LinkedIn</a>
+            </li>
+            <li>
+                <span class="contact-icon" aria-hidden="true">🐙</span>
+                <a href="https://github.com/alexlanquar" target="_blank" rel="noopener">GitHub</a>
+            </li>
+            <li>
+                <span class="contact-icon" aria-hidden="true">📞</span>
+                <a href="tel:+10000000000">+1 000 000 0000</a>
+            </li>
+        </ul>
+    </section>
 
     <!-- mute btn -->
     <button id="mute-btn" class="audio-button" title="Couper / Activer le son">

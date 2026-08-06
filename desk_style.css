@@ -9,17 +9,12 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url('./images/desk_background.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-    background-attachment: fixed; /* Fixe l'image de fond pour qu'elle ne bouge pas lors du défilement */
+    background-color: #4a2f1c;
     color: white;
     max-width: 100%;
     padding: 0;
     min-height: 100vh;
-    background-color: #000000;
-    box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
+    box-sizing: border-box;
 }
 
 h1 {
@@ -28,29 +23,123 @@ h1 {
     text-align: center;
 }
 
+/* Décor du bureau : sol en parquet + meubles ton bois/bleu, dans le
+   système générique .room-scene / .prop défini dans style.css. */
+.room-floor {
+    background:
+        repeating-linear-gradient(90deg, rgba(0,0,0,0.12) 0 2px, transparent 2px 46px),
+        linear-gradient(180deg, #a6703f, #7c4f28);
+}
+.prop { background: linear-gradient(180deg, #5d7a99, #3f5a75); color: #fff; }
+.prop--accent { background: linear-gradient(180deg, #e8b23d, #b8791f); }
+
+/* Zone invisible servant uniquement de repère de position (pas un bouton,
+   pas cliquable) pour déclencher l'affichage de la carte de contact. */
+.proximity-zone {
+    position: absolute;
+    pointer-events: none;
+}
+
+/* === Carte de contact ===
+   Cachée par défaut, elle apparaît en fondu quand le personnage
+   s'approche de #contact-trigger (voir script.js). */
+.contact-card {
+    position: absolute;
+    left: 6%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: min(320px, 80vw);
+    background: #f4e4c1;
+    color: #3a2a1a;
+    border: 4px solid #6b4423;
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    font-family: 'pixelifysans', sans-serif;
+    z-index: 900;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.contact-card.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.contact-card h2 {
+    margin: 0 0 14px;
+    font-size: 20px;
+    text-align: center;
+    color: #3a2a1a;
+}
+
+.contact-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+.contact-icon {
+    font-size: 18px;
+}
+
+.contact-list a {
+    color: #3a2a1a;
+    text-decoration: none;
+    border-bottom: 1px dashed #6b4423;
+}
+
+.contact-list a:hover {
+    color: #8e44ad;
+    border-bottom-color: #8e44ad;
+}
+
+@media (max-width: 700px) {
+    .contact-card {
+        left: 50%;
+        top: auto;
+        bottom: 90px;
+        transform: translateX(-50%);
+        width: 85vw;
+    }
+}
 
 #mute-btn {
-    position: fixed;     
-    bottom: 20px;        
-    right: 20px;         
-    background: none;    
-    border: none;        
-    cursor: pointer;     
-    padding: 0;          
-    z-index: 1000;       
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1000;
 }
 
 #mute-btn img {
-    width: 30px;         
-    height: auto;        
-    transition: transform 0.2s ease; 
+    width: 30px;
+    height: auto;
+    transition: transform 0.2s ease;
 }
 
 #mute-btn img:hover {
     transform: scale(1.1);
 }
 
-#pcopyright{
+#pcopyright {
     font-family: 'pixelifysans', sans-serif;
     text-align: end;
 }
@@ -59,109 +148,9 @@ h1 {
     display: none !important;
 }
 
-nav{
-    display: flex;
-    justify-content: center;
-    background-color: #1a294d;
-    padding: 10px 0;
-}
-
-/* Transforme les boutons du menu pour qu'ils ressemblent à des liens */
-.nav-link {
-    /* 1. TAILLE FORCÉE EN CARRÉ COMPACT */
-    width: 120px;             /* Largeur du carré */
-    height: 120px;            /* Hauteur identique pour un carré parfait */
-    padding: 0;               /* On retire les espacements qui déforment le carré */
-    
-    /* 2. CENTRAGE PARFAIT DU TEXTE IN-APP */
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 16px;
-    font-family: sans-serif;
-    
-    /* 3. COULEUR DE REMPLISSAGE VIOLETTE */
-    background-color: #8e44ad; /* Un beau violet franc */
-    color: #ffffff;           /* Texte en blanc */
-    border: 3px solid #ffffff; /* Bordure blanche pour détacher le carré du fond */
-    border-radius: 0px;       /* Force les angles bien droits (0px = carré parfait) */
-    
-    /* 4. DESIGN & INTERACTION */
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Ombre portée sous le carré */
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-#section-resume{
-    display: flex;
-    justify-content: center; /* Centre horizontalement */
-    align-items: center;     /* Centre verticalement au milieu de la page */
-    min-height: 100vh;       /* Prend toute la hauteur de l'écran */
-    width: 100%;
-    color: #ffffff !important; /* Force le texte en blanc */
-    text-align: center;      /* Centre le texte */
-    box-sizing: border-box;
-    padding: 40px 20px;
-}
-
-title {
-    font-family: 'PixelifySans', sans-serif;
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: black;
-}
-
-iframe {
-    width: 100%;
-    height: 80vh; /* Ajuste la hauteur selon tes besoins */
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.resume-container {
-    color: white;
-    font-family: 'pixelifysans', sans-serif;
-    text-align: center;
-}
-
-.resume-container .instruction {
-  font-size: 16px;
-  margin-bottom: 25px;
-  font-family: Arial, sans-serif;
-}
-
-.resume-container .pdf-container {
-  padding-top: 60px;
-  left:auto;
-}
-
-.resume-container .pdf-link {
-  display: inline-block;
-  text-decoration: none;
-  color: inherit;
-  width: max-content;
-}
-
-.pdf-preview {
-  display: block;
-  max-width: 800px; /* Largeur maximale de l'aperçu */
-  width: 100%;
-  height: auto;
-  margin: 10px auto;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Ombre portée sous le CV */
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.pdf-preview:hover {
-  transform: scale(1.01);
-}
-
-#logo {
-    display: block;
-    left: 0;
-    right: 500px;
-    height: auto;
+.wall {
+    position: absolute;
+    background: #2e1b10; /* couleur mur */
+    border: 3px solid #1a0f08; /* contour */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
 }

@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Alexandre Lanquar</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./desk_style.css">
         <!-- prechargement pour l'image de marche -->
     <link rel="preload" href="./images/right_walk.gif" as="image">
 </head>
 
-<body class="page-travel" data-page="travel">
+<body>  
     <div id="character-wrapper" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1000; display: flex; flex-direction: column; align-items: center; pointer-events: none;">
         <span id="action-text" style="background: rgba(0, 0, 0, 0.75); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-family: sans-serif; white-space: nowrap; opacity: 0; visibility: hidden; position: absolute; bottom: 100%; transform: translateY(-6px); transition: opacity 0.15s, visibility 0.15s;">
             Appuyez sur Entrée ↵
@@ -17,26 +17,9 @@
         <img src="./images/base.png" id="character" alt="Personnage" style="width: 40px; height: auto; transition: transform 0.1s;">
     </div>
 
-    <div id="game-world" style="position: relative; width: 100%; min-height: 80vh;">
-        <div class="room-scene">
-            <div class="room-floor"></div>
-            <div class="room-wall"></div>
-            <div class="room-title">✈️ Voyages</div>
-
-            <!-- Comptoir d'enregistrement (décor + obstacle) -->
-            <div class="prop" style="left: 33%; top: 32%; width: 34%; height: 15%;">🛄
-                <span class="prop-label">Enregistrement</span>
-            </div>
-            <!-- Tapis à bagages (décor + obstacle) -->
-            <div class="prop prop--accent" style="left: 10%; top: 58%; width: 16%; height: 14%;">🧳</div>
-            <!-- Banc d'attente (décor + obstacle) -->
-            <div class="prop" style="left: 72%; top: 58%; width: 18%; height: 12%;">💺</div>
-            <!-- Porte d'embarquement / sortie -->
-            <div class="exit-door" style="left: 44%; top: 84%; width: 12%; height: 14%;"></div>
-        </div>
-
-        <!-- Repositionne left/top pour rester calé sur la porte d'embarquement dessinée ci-dessus -->
-        <button id="btn-home" class="nav-link exit-link" style="left: 50%; top: 88%; z-index: 5;">Retour à l'accueil</button>
+    <div id="game-world" style="position: relative; width: 100%; min-height: 80vh; background-image: url('./images/votre_fond.jpg'); background-size: cover; background-position: center;">
+        <button id="btn-home" class="nav-link active" style="position: absolute; left: 15%; top: 20%;">Accueil</button>
+        <button id="btn-cv" class="nav-link active" style="position: absolute; left: 85%; top: 40%;">CV</button>
     </div>
 
     <!-- mute btn -->

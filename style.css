@@ -9,7 +9,6 @@
 body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url('./images/village_backgroundhome.png');
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -21,6 +20,35 @@ body {
     min-height: 100vh;
     box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
 }
+
+/* === Fond spécifique à chaque page ===
+   L'accueil garde son image de village. Les autres pages sont dessinées
+   en CSS (sol + meubles ci-dessous), donc pas d'image à fournir. */
+body.page-home     { background-image: url('./images/village_backgroundhome.png'); } /* vue d'ensemble du village */
+body.page-travel   { background-color: #2b3a45; }   /* aéroport pour "Voyages" */
+body.page-projects { background-color: #22201d; }   /* atelier pour "Projets" */
+
+/* === Sols et meubles par thème === */
+/* -- Aéroport (Voyages) -- */
+.page-travel .room-floor {
+    background:
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 64px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 2px, transparent 2px 64px),
+        linear-gradient(180deg, #3c4f5c, #2b3a45);
+}
+.page-travel .prop { background: linear-gradient(180deg, #7d92a1, #566a77); color: #fff; }
+.page-travel .prop--accent { background: linear-gradient(180deg, #e8a33d, #c07d1f); }
+
+/* -- Atelier (Projets) -- */
+.page-projects .room-floor {
+    background:
+        repeating-linear-gradient(90deg, rgba(0,0,0,0.25) 0 2px, transparent 2px 48px),
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.25) 0 2px, transparent 2px 48px),
+        linear-gradient(180deg, #34302a, #22201d);
+}
+.page-projects .prop { background: linear-gradient(180deg, #8a5a34, #5e3b1f); color: #fff; }
+.page-projects .prop--accent { background: linear-gradient(180deg, #e8b23d, #b8791f); }
+body.page-desk      { background-image: url('./images/desk_background.png'); }        /* bureau pour "Contact & CV" */
 
 h1 {
     color: white;
@@ -66,31 +94,111 @@ nav{
     padding: 10px 0;
 }
 
-/* Transforme les boutons du menu pour qu'ils ressemblent à des liens */
+/* Zones de navigation invisibles, calées sur les bâtiments/objets dessinés
+   dans le fond d'écran. Ajuste width/height/left/top en inline style dans
+   chaque page pour les faire coïncider avec ton dessin. */
 .nav-link {
-    /* 1. TAILLE FORCÉE EN CARRÉ COMPACT */
-    width: 120px;             /* Largeur du carré */
-    height: 120px;            /* Hauteur identique pour un carré parfait */
-    padding: 0;               /* On retire les espacements qui déforment le carré */
-    
-    /* 2. CENTRAGE PARFAIT DU TEXTE IN-APP */
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 16px;
-    font-family: sans-serif;
-    
-    /* 3. COULEUR DE REMPLISSAGE VIOLETTE */
-    background-color: #8e44ad; /* Un beau violet franc */
-    color: #ffffff;           /* Texte en blanc */
-    border: 3px solid #ffffff; /* Bordure blanche pour détacher le carré du fond */
-    border-radius: 0px;       /* Force les angles bien droits (0px = carré parfait) */
-    
-    /* 4. DESIGN & INTERACTION */
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    border: none;
+    color: transparent;   /* le texte du bouton reste dans le HTML pour l'accessibilité, mais invisible */
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Ombre portée sous le carré */
-    transition: background-color 0.2s, transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* SQus clavier, pour rester
+   utilisable sans que les carrés violets soient visibles en permanence. */
+.nav-link:hover,
+.nav-link:focus-visible {
+    outline: 2px dashed rgba(255, 255, 255, 0.55);
+    outline-offset: 2px;
+}
+
+/* Zone de sortie (retour à l'accueil), calée sur le dessin de la sortie
+   (porte/portail/chemin) propre à chaque map. */
+.exit-link {
+    width: 90px;
+    height: 110px;
+}
+
+/* ==========================================================================
+   DÉCOR DE SALLE EN CSS (pas d'images à fournir : sol, murs, meubles)
+   ========================================================================== */
+
+.room-scene {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.room-floor {
+    position: absolute;
+    inset: 0;
+}
+
+/* Bande de mur en haut de la pièce, pour donner une impression de profondeur */
+.room-wall {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 16%;
+    background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0));
+}
+
+/* Meuble générique : un simple bloc avec une "face" plus sombre en bas
+   pour suggérer un volume, et une icône centrée. */
+.prop {
+    position: absolute;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(18px, 3vw, 30px);
+    box-shadow:
+        0 8px 0 rgba(0, 0, 0, 0.25),
+        0 10px 14px rgba(0, 0, 0, 0.35);
+}
+
+.prop-label {
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-family: sans-serif;
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(0, 0, 0, 0.55);
+    padding: 2px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+/* Porte de sortie : forme en arche, bien reconnaissable */
+.exit-door {
+    position: absolute;
+    border-radius: 50% 50% 6px 6px / 30% 30% 6px 6px;
+    background: linear-gradient(180deg, #3a2a1a, #241708);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 18px rgba(255, 220, 150, 0.55);
+}
+
+.room-title {
+    position: absolute;
+    left: 50%;
+    top: 3%;
+    transform: translateX(-50%);
+    font-family: 'pixelifysans', sans-serif;
+    font-size: clamp(20px, 4vw, 32px);
+    color: #fff;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    white-space: nowrap;
 }
 
 title {

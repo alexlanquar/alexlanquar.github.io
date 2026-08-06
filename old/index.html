@@ -8,7 +8,8 @@
     <!-- prechargement pour l'image de marche -->
     <link rel="preload" href="./images/right_walk.gif" as="image">
 </head>
-<body class="page-home" data-page="home">
+<body>
+    <!-- <img src="./images/base.png" id="character" alt="Personnage" style="position: absolute; left: 50px; top: 200px; width: 40px; height: auto; z-index: 1000; transition: transform 0.1s;"> -->
     <div id="character-wrapper" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1000; display: flex; flex-direction: column; align-items: center; pointer-events: none;">
         <span id="action-text" style="background: rgba(0, 0, 0, 0.75); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-family: sans-serif; white-space: nowrap; opacity: 0; visibility: hidden; position: absolute; bottom: 100%; transform: translateY(-6px); transition: opacity 0.15s, visibility 0.15s;">
             Appuyez sur Entrée ↵
@@ -16,7 +17,7 @@
         <img src="./images/base.png" id="character" alt="Personnage" style="width: 40px; height: auto; transition: transform 0.1s;">
     </div>
 
-    <div id="game-world" style="position: relative; width: 100%; min-height: 80vh;">
+    <div id="game-world" style="position: relative; width: 100%; min-height: 80vh; background-image: url('./images/votre_fond.jpg'); background-size: cover; background-position: center;">
         <button id="btn-home" class="nav-link active" style="position: absolute; left: 15%; top: 20%;">Accueil</button>
         <button id="btn-travel" class="nav-link" style="position: absolute; left: 80%; top: 30%;">Voyages</button>
         <!-- Boutons placés en coordonnées absolues par rapport au fond -->
