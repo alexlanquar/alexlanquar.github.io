@@ -21,22 +21,29 @@
         <div class="room-scene">
             <div class="room-floor"></div>
             <div class="room-wall"></div>
+            <div class="room-outline"></div>
             <div class="room-title">🛠️ Projets</div>
 
+            <!-- Murs de la pièce (invisibles, bloquent la sortie) -->
+            <div class="wall obstacle" style="left: 3%;  top: 3%;  width: 94%; height: 2%;"></div>
+            <div class="wall obstacle" style="left: 3%;  top: 93%; width: 94%; height: 2%;"></div>
+            <div class="wall obstacle" style="left: 3%;  top: 3%;  width: 2%;  height: 92%;"></div>
+            <div class="wall obstacle" style="left: 95%; top: 3%;  width: 2%;  height: 92%;"></div>
+
             <!-- Établi (décor + obstacle) -->
-            <div class="prop" style="left: 28%; top: 40%; width: 26%; height: 16%;">🛠️
+            <div class="prop obstacle" style="left: 28%; top: 40%; width: 26%; height: 16%;">🛠️
                 <span class="prop-label">Établi</span>
             </div>
             <!-- Étagère à outils (décor + obstacle) -->
-            <div class="prop" style="left: 68%; top: 22%; width: 16%; height: 34%;">📚</div>
+            <div class="prop obstacle" style="left: 68%; top: 22%; width: 16%; height: 34%;">📚</div>
             <!-- Boîte à outils (décor + obstacle) -->
-            <div class="prop prop--accent" style="left: 10%; top: 60%; width: 12%; height: 12%;">🧰</div>
+            <div class="prop prop--accent obstacle" style="left: 10%; top: 60%; width: 12%; height: 12%;">🧰</div>
             <!-- Porte de sortie -->
-            <div class="exit-door" style="left: 44%; top: 84%; width: 12%; height: 14%;"></div>
+            <div class="exit-door" style="left: 44%; top: 82%; width: 12%; height: 12%;"></div>
         </div>
 
         <!-- Repositionne left/top pour rester calé sur la porte dessinée ci-dessus -->
-        <button id="btn-home" class="nav-link exit-link" style="left: 50%; top: 88%; z-index: 5;">Retour à l'accueil</button>
+        <button id="btn-home" class="nav-link exit-link" style="left: 50%; top: 86%; width: 90px; height: 60px; z-index: 5;">Retour à l'accueil</button>
     </div>
 
     <!-- mute btn -->

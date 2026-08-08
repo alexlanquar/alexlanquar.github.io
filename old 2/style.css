@@ -24,20 +24,11 @@ body {
 /* === Fond spécifique à chaque page ===
    L'accueil garde son image de village. Les autres pages sont dessinées
    en CSS (sol + meubles ci-dessous), donc pas d'image à fournir. */
-body.page-home      { background-color: #3c6b2f; }  /* village pour l'accueil */
-body.page-travel    { background-color: #2b3a45; }   /* aéroport pour "Voyages" */
-body.page-projects  { background-color: #22201d; }   /* atelier pour "Projets" */
-
-/* -- Village (Accueil) -- */
-.page-home .room-floor {
-    background:
-        radial-gradient(circle at 50% 45%, rgba(255,255,255,0.08), transparent 55%),
-        linear-gradient(180deg, #4c8a3a, #356024);
-}
-.page-home .prop--warm { background: linear-gradient(180deg, #c1613f, #8a3f26); color: #fff; }
+body.page-home     { background-image: url('./images/village_backgroundhome.png'); } /* vue d'ensemble du village */
+body.page-travel   { background-color: #2b3a45; }   /* aéroport pour "Voyages" */
+body.page-projects { background-color: #22201d; }   /* atelier pour "Projets" */
 
 /* === Sols et meubles par thème === */
-
 /* -- Aéroport (Voyages) -- */
 .page-travel .room-floor {
     background:
@@ -119,7 +110,7 @@ nav{
     -webkit-tap-highlight-color: transparent;
 }
 
-/* Léger repère visuel uniquement au survol/focus clavier, pour rester
+/* SQus clavier, pour rester
    utilisable sans que les carrés violets soient visibles en permanence. */
 .nav-link:hover,
 .nav-link:focus-visible {
@@ -210,54 +201,6 @@ nav{
     white-space: nowrap;
 }
 
-/* Variantes de couleur réutilisables pour les meubles/objets */
-.prop--fun    { background: linear-gradient(180deg, #9b59b6, #6c3483); color: #fff; }
-.prop--plant  { background: linear-gradient(180deg, #3f9142, #256b28); color: #fff; }
-.prop--stone  { background: linear-gradient(180deg, #8a8f94, #5c6166); color: #fff; }
-.prop--circle { border-radius: 50%; }
-
-/* Murs de la pièce : invisibles mais bloquent le déplacement (classe .obstacle),
-   pour ne jamais pouvoir sortir du cadre, peu importe la taille de la fenêtre. */
-.wall {
-    position: absolute;
-    background: transparent;
-}
-
-/* Contour visuel de la pièce, purement décoratif (les vrais murs qui
-   bloquent sont les .wall ci-dessus, positionnés au même endroit). */
-.room-outline {
-    position: absolute;
-    left: 3%;
-    top: 3%;
-    width: 94%;
-    height: 92%;
-    border: 4px solid rgba(255, 255, 255, 0.35);
-    border-radius: 4px;
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Panneau d'info générique (carte de contact, easter egg...) : caché par
-   défaut, apparaît en fondu via la classe .visible ajoutée par script.js. */
-.info-panel {
-    position: absolute;
-    background: #f4e4c1;
-    color: #3a2a1a;
-    border: 4px solid #6b4423;
-    border-radius: 6px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-    padding: 18px;
-    font-family: 'pixelifysans', sans-serif;
-    z-index: 900;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.25s ease, visibility 0.25s ease;
-}
-.info-panel.visible { opacity: 1; visibility: visible; pointer-events: auto; }
-.info-panel h2 { margin: 0 0 10px; font-size: 18px; text-align: center; }
-.info-panel p { margin: 0; font-size: 14px; line-height: 1.4; font-family: Arial, sans-serif; }
-
 title {
     font-family: 'PixelifySans', sans-serif;
     font-size: 32px;
@@ -296,8 +239,6 @@ iframe {
   color: inherit;
   width: max-content;
 }
-
-
 
 .pdf-preview {
   display: block;

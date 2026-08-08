@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Alexandre Lanquar</title>
+    <link rel="stylesheet" href="./resume_style.css">
+    <!-- Préchargement pour l'image de marche -->
+    <link rel="preload" href="./images/right_walk.gif" as="image">
+</head>
+
+<body>  
+    <!-- Navigation -->
+    <button id="btn-desk" class="btn-stop" style="position: absolute; left: 85%; top: 7px; z-index: 1500;"> 
+        <img src="./images/stop_btn.png">
+    </button>
+
+    <!-- Section CV -->
+    <div class="resume-container" style="position: relative; z-index: 10;">
+        <div class="pdf-container">  
+            <a href="./documents/ResumeFRAlexandreLanquar.pdf" target="_blank" class="pdf-link">
+                <img src="images/Alexandre Lanquar CV Canada v2_page-0001.jpg" alt="Aperçu du CV" class="pdf-preview">
+                <img src="images/Alexandre Lanquar CV Canada v2_page-0002.jpg" alt="Aperçu du CV" class="pdf-preview">
+            </a>
+        </div>
+    </div> <!-- CORRIGÉ : Lettre 'd' parasite supprimée ici -->
+
+    <!-- Mute btn -->
+    <button id="mute-btn" class="audio-button" title="Couper / Activer le son">
+        <img src="./images/unmute.png" id="mute-icon" alt="Volume">
+    </button>
+
+    <!-- Footer -->
+    <footer id="contact-section">
+        <p id="pcopyright">Music : gingersweet - massobeats</p>
+    </footer>
+    
+    <!-- Script -->
+    <script src="./resume_script.js"></script>
+</body>
+</html>

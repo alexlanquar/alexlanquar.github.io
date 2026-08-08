@@ -40,12 +40,41 @@ h1 {
     pointer-events: none;
 }
 
-/* === Carte de contact === (structure commune : voir .info-panel dans style.css) */
+/* === Carte de contact ===
+   Cachée par défaut, elle apparaît en fondu quand le personnage
+   s'approche de #contact-trigger (voir script.js). */
 .contact-card {
-    left: 70%;
-    top: 45%;
+    position: absolute;
+    left: 6%;
+    top: 50%;
     transform: translateY(-50%);
-    width: min(300px, 78vw);
+    width: min(320px, 80vw);
+    background: #f4e4c1;
+    color: #3a2a1a;
+    border: 4px solid #6b4423;
+    border-radius: 6px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    font-family: 'pixelifysans', sans-serif;
+    z-index: 900;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.contact-card.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.contact-card h2 {
+    margin: 0 0 14px;
+    font-size: 20px;
+    text-align: center;
+    color: #3a2a1a;
 }
 
 .contact-list {
@@ -79,25 +108,14 @@ h1 {
     border-bottom-color: #8e44ad;
 }
 
-/* === Easter egg caché === */
-.easter-egg-card {
-    left: 6%;
-    top: 78%;
-    width: min(240px, 70vw);
-    border-style: dashed;
-    background: #fff6e0;
-    text-align: center;
-}
-
 @media (max-width: 700px) {
-    .contact-card,
-    .easter-egg-card {
+    .contact-card {
         left: 50%;
+        top: auto;
+        bottom: 90px;
         transform: translateX(-50%);
         width: 85vw;
     }
-    .contact-card { top: auto; bottom: 90px; }
-    .easter-egg-card { top: auto; bottom: 90px; }
 }
 
 #mute-btn {
@@ -128,4 +146,11 @@ h1 {
 
 .hidden {
     display: none !important;
+}
+
+.wall {
+    position: absolute;
+    background: #2e1b10; /* couleur mur */
+    border: 3px solid #1a0f08; /* contour */
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
 }

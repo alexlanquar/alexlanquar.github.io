@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (homeBtn) {
                 const rect = homeBtn.getBoundingClientRect();
                 return {
-                    x: rect.left + rect.width / 2 - 20,
-                    y: rect.top + rect.height / 2 - 20
+                    x: rect.left + rect.width / 2 - 20, // centré sur le bouton
+                    y: rect.top - 40   // spawn 40px AU-DESSUS du bouton
                 };
             }
         }
         return {
-            x: window.innerWidth / 2 - 20,
+            x: window.innerWidth / 2,
             y: window.innerHeight / 2 - 20
         };
     }
@@ -44,7 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // La hitbox de chaque meuble est directement sa taille/position réelle
     // dans le HTML (tout élément avec la classe "obstacle" dans #game-world).
     // Changer width/height/left/top du div change donc AUTOMATIQUEMENT
-    // à la fois le visuel et la collision : une seule source de vérité.
+    // à la fois le visuel et la collision : une seule source de vérité,
+    // plus de table de coordonnées à maintenir en double.
     const gameWorld = document.getElementById('game-world');
 
     function getObstacleRects() {
@@ -63,8 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // personnage s'en approche.
     const proximityConfig = {
         desk: [
-            { zoneId: 'contact-trigger', targetId: 'contact-card', radius: 120 },
-            { zoneId: 'easter-egg-trigger', targetId: 'easter-egg-card', radius: 100 }
+            { zoneId: 'contact-trigger', targetId: 'contact-card', radius: 300 }
         ]
     };
     const proximityZones = proximityConfig[document.body.dataset.page] || [];
@@ -126,9 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             interactWithClosestTarget();
         }
-        if (key === 'h') {
-            document.body.classList.toggle('debug-hitboxes');
-        }
         keys[key] = true;
     });
 
@@ -136,18 +133,20 @@ document.addEventListener('DOMContentLoaded', () => {
         keys[e.key.toLowerCase()] = false;
     });
 
-    // Distance entre le personnage et un élément cible : mesurée entre les
-    // BORDS des deux rectangles (0 si le personnage touche ou est à
-    // l'intérieur de la zone), et non entre leurs centres. Plus fiable pour
-    // les grandes zones, où le centre peut tomber à un endroit inatteignable.
+    // Distance entre le centre du personnage et le centre d'un bouton
     function distanceToButton(btn) {
-        const charRect = wrapper.getBoundingClientRect();
+        const rect = wrapper.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
         const btnRect = btn.getBoundingClientRect();
+        const btnCenterX = btnRect.left + btnRect.width / 2;
+        const btnCenterY = btnRect.top + btnRect.height / 2;
 
-        const dx = Math.max(btnRect.left - charRect.right, charRect.left - btnRect.right, 0);
-        const dy = Math.max(btnRect.top - charRect.bottom, charRect.top - btnRect.bottom, 0);
-
-        return Math.sqrt(dx * dx + dy * dy);
+        return Math.sqrt(
+            Math.pow(centerX - btnCenterX, 2) +
+            Math.pow(centerY - btnCenterY, 2)
+        );
     }
 
     // Renvoie la cible de navigation la plus proche du personnage,

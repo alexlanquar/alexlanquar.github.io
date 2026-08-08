@@ -17,45 +17,16 @@
     </div>
 
     <div id="game-world" style="position: relative; width: 100%; min-height: 80vh;">
-        <div class="room-scene">
-            <div class="room-floor"></div>
-            <div class="room-outline"></div>
-
-            <!-- Murs du village (invisibles, bloquent la sortie) -->
-            <div class="wall obstacle" style="left: 3%;  top: 3%;  width: 94%; height: 2%;"></div>
-            <div class="wall obstacle" style="left: 3%;  top: 93%; width: 94%; height: 2%;"></div>
-            <div class="wall obstacle" style="left: 3%;  top: 3%;  width: 2%;  height: 92%;"></div>
-            <div class="wall obstacle" style="left: 95%; top: 3%;  width: 2%;  height: 92%;"></div>
-
-            <!-- Maison "Voyages" -->
-            <div class="prop prop--accent obstacle" style="left: 66%; top: 10%; width: 22%; height: 24%;">✈️
-                <span class="prop-label">Voyages</span>
-            </div>
-
-            <!-- Puits (déco, au centre) -->
-            <div class="prop prop--stone prop--circle" style="left: 46%; top: 52%; width: 8%; height: 8%;">💧</div>
-
-            <!-- Maison "Projets" -->
-            <div class="prop prop--warm obstacle" style="left: 10%; top: 60%; width: 20%; height: 24%;">🛠️
-                <span class="prop-label">Projets</span>
-            </div>
-
-            <!-- Maison "Contact & CV" -->
-            <div class="prop obstacle" style="left: 66%; top: 60%; width: 20%; height: 24%;">📇
-                <span class="prop-label">Contact & CV</span>
-            </div>
-        </div>
-
+        <button id="btn-home" class="nav-link active" style="position: absolute; left: 15%; top: 20%;">Accueil</button>
+        <button id="btn-travel" class="nav-link" style="position: absolute; left: 80%; top: 30%;">Voyages</button>
         <!-- Boutons placés en coordonnées absolues par rapport au fond -->
-         <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; position: absolute; left: 50%; top: 38%; transform: translate(-50%, -50%); z-index: 2;">
+         <div style="display: flex; align-items: center; justify-content: center; flex-direction: column; position: absolute; left: 50%; top: 40%; transform: translate(-50%, -50%);">
                 <h1>Bienvenue sur le site de</h1>
                 <h1>Alexandre Lanquar</h1>
         </div>
+        <button id="btn-projects" class="nav-link" style="position: absolute; left: 25%; top: 65%;">Projets</button>
+        <button id="btn-desk" class="nav-link" style="position: absolute; left: 70%; top: 70%;">Contact & CV</button>
 
-        <!-- Points interactifs : juste devant chaque maison, jamais dedans -->
-        <button id="btn-travel" class="nav-link" style="left: 77%; top: 36%; width: 90px; height: 55px; z-index: 5;">Voyages</button>
-        <button id="btn-projects" class="nav-link" style="left: 20%; top: 86%; width: 90px; height: 55px; z-index: 5;">Projets</button>
-        <button id="btn-desk" class="nav-link" style="left: 76%; top: 86%; width: 90px; height: 55px; z-index: 5;">Contact & CV</button>
     </div>
 
     

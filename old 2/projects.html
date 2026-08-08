@@ -9,7 +9,7 @@
     <link rel="preload" href="./images/right_walk.gif" as="image">
 </head>
 
-<body class="page-travel" data-page="travel">
+<body class="page-projects" data-page="projects">
     <div id="character-wrapper" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 1000; display: flex; flex-direction: column; align-items: center; pointer-events: none;">
         <span id="action-text" style="background: rgba(0, 0, 0, 0.75); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-family: sans-serif; white-space: nowrap; opacity: 0; visibility: hidden; position: absolute; bottom: 100%; transform: translateY(-6px); transition: opacity 0.15s, visibility 0.15s;">
             Appuyez sur Entrée ↵
@@ -21,29 +21,22 @@
         <div class="room-scene">
             <div class="room-floor"></div>
             <div class="room-wall"></div>
-            <div class="room-outline"></div>
-            <div class="room-title">✈️ Voyages</div>
+            <div class="room-title">🛠️ Projets</div>
 
-            <!-- Murs de la pièce (invisibles, bloquent la sortie) -->
-            <div class="wall obstacle" style="left: 3%;  top: 3%;  width: 94%; height: 2%;"></div>
-            <div class="wall obstacle" style="left: 3%;  top: 93%; width: 94%; height: 2%;"></div>
-            <div class="wall obstacle" style="left: 3%;  top: 3%;  width: 2%;  height: 92%;"></div>
-            <div class="wall obstacle" style="left: 95%; top: 3%;  width: 2%;  height: 92%;"></div>
-
-            <!-- Comptoir d'enregistrement (décor + obstacle) -->
-            <div class="prop obstacle" style="left: 33%; top: 32%; width: 34%; height: 15%;">🛄
-                <span class="prop-label">Enregistrement</span>
+            <!-- Établi (décor + obstacle) -->
+            <div class="prop" style="left: 28%; top: 40%; width: 26%; height: 16%;">🛠️
+                <span class="prop-label">Établi</span>
             </div>
-            <!-- Tapis à bagages (décor + obstacle) -->
-            <div class="prop prop--accent obstacle" style="left: 10%; top: 58%; width: 16%; height: 14%;">🧳</div>
-            <!-- Banc d'attente (décor + obstacle) -->
-            <div class="prop obstacle" style="left: 72%; top: 58%; width: 18%; height: 12%;">💺</div>
-            <!-- Porte d'embarquement / sortie -->
-            <div class="exit-door" style="left: 44%; top: 82%; width: 12%; height: 12%;"></div>
+            <!-- Étagère à outils (décor + obstacle) -->
+            <div class="prop" style="left: 68%; top: 22%; width: 16%; height: 34%;">📚</div>
+            <!-- Boîte à outils (décor + obstacle) -->
+            <div class="prop prop--accent" style="left: 10%; top: 60%; width: 12%; height: 12%;">🧰</div>
+            <!-- Porte de sortie -->
+            <div class="exit-door" style="left: 44%; top: 84%; width: 12%; height: 14%;"></div>
         </div>
 
-        <!-- Repositionne left/top pour rester calé sur la porte d'embarquement dessinée ci-dessus -->
-        <button id="btn-home" class="nav-link exit-link" style="left: 50%; top: 86%; width: 90px; height: 60px; z-index: 5;">Retour à l'accueil</button>
+        <!-- Repositionne left/top pour rester calé sur la porte dessinée ci-dessus -->
+        <button id="btn-home" class="nav-link exit-link" style="left: 50%; top: 88%; z-index: 5;">Retour à l'accueil</button>
     </div>
 
     <!-- mute btn -->
