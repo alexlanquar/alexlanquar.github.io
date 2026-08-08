@@ -32,6 +32,7 @@ h1 {
 }
 .prop { background: linear-gradient(180deg, #5d7a99, #3f5a75); color: #fff; }
 .prop--accent { background: linear-gradient(180deg, #e8b23d, #b8791f); }
+.prop--accent-cv { background: linear-gradient(180deg, #7ce83d, #b8791f); }
 
 /* Zone invisible servant uniquement de repère de position (pas un bouton,
    pas cliquable) pour déclencher l'affichage de la carte de contact. */

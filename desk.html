@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Alexandre Lanquar</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./index_style.css">
     <link rel="stylesheet" href="./desk_style.css">
         <!-- prechargement pour l'image de marche -->
     <link rel="preload" href="./images/right_walk.gif" as="image">
@@ -54,6 +54,7 @@
                 <span class="prop-label">Cafe</span>
             </div>
 
+            <!-- Bureau "Contact" -->
             <div class="prop prop--accent obstacle" style="left: 94%; top: 30%; width: 3%; height: 15%;">🖥️
                 <span class="prop-label">Contact</span>
                 <div id="contact-trigger" class="proximity-zone" style="right: 0; width: 300%; height: 200px;"></div>
@@ -65,9 +66,9 @@
             </div>
 
             <!-- Bureau CV -->
-            <div class="prop prop--accent obstacle" style="left: 3%; top: 65%; width: 6%; height: 15%;">🖥️
+            <div class="prop prop--accent-cv obstacle" style="left: 3%; top: 65%; width: 6%; height: 15%;">🖥️
                 <span class="prop-label">CV</span>
-                <button id="btn-cv" class="nav-link" style="z-index: 5; left: 50%; width : 100%">Voir le CV</button>
+                <button id="btn-cv" class="nav-link" data-spawn="btn-cv" style="z-index: 5; left: 50%; width : 100%">Voir le CV</button>
             </div>
 
             <!-- Bureau "easter egg" caché -->

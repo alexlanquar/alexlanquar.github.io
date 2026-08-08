@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (btnDesk) {
         btnDesk.addEventListener('click', () => {
-            window.location.href = 'desk.html'; 
+            window.location.href = 'desk.html?from=btn-cv'; 
         });
     }
 

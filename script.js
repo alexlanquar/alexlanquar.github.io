@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const character = document.getElementById('character');
     const actionText = document.getElementById('action-text');
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const from = urlParams.get('from'); // bouton de navigation d'où vient le personnage
+
     const speed = 5;
     const keys = {};
 
@@ -20,6 +23,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const isHomePage = document.body.dataset.page === 'home';
 
     function getSpawnPosition() {
+
+        if (from === "btn-cv") {
+            const cvDesk = document.querySelector('.prop.prop--accent-cv'); // bureau CV
+            if (cvDesk) {
+                const r = cvDesk.getBoundingClientRect();
+                return {
+                    x: r.left + r.width / 2 + 100,
+                    y: r.bottom - 100 // spawn juste devant le bureau
+                };
+            }
+        }
+
         if (!isHomePage) {
             const homeBtn = document.getElementById('btn-home');
             if (homeBtn) {
@@ -30,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
             }
         }
+
         return {
             x: window.innerWidth / 2 - 20,
             y: window.innerHeight / 2 - 20
@@ -103,7 +119,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = document.getElementById(target.buttonId);
         if (!btn) return;
         btn.addEventListener('click', () => {
-            goToPage(target.url);
+            const spawnParam = btn.dataset.spawn ? `?from=${btn.dataset.spawn}` : '';
+            goToPage(target.url + spawnParam);
         });
     });
 
